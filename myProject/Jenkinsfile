@@ -3,11 +3,13 @@ pipeline {
   tools {
     maven 'maven-3.5.4'
   }
+  environment {
+    WORKSPACE = 'myProject'
+  }
   stages {
     stage('checkout') {
       steps {
         git 'https://github.com/nautilus99/jenkins.git'
-        sh 'cd myProject'
       }
     }
     stage('Build') {
