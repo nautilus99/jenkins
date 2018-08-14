@@ -3,9 +3,6 @@ pipeline {
   tools {
     maven 'maven-3.5.4'
   }
-  environment {
-    WORKSPACE = 'myProject'
-  }
   stages {
     stage('checkout') {
       steps {
@@ -14,17 +11,20 @@ pipeline {
     }
     stage('Build') {
       steps {
+        sh 'cd myProject'
         sh 'mvn clean compile'
       }
     }
     stage('Test') {
       steps {
+        sh 'cd myProject'
         sh 'mvn test'
         junit '**/target/surefire-reports/TEST-*.xml'
       }
     }
     stage('Package') {
       steps {
+        sh 'cd myProject'
         sh 'mvn package'
       }
     }
