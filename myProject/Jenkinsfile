@@ -11,21 +11,18 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'cd myProject'
-        sh 'mvn clean compile'
+        sh 'mvn -f myProject/pom.xml clean compile'
       }
     }
     stage('Test') {
       steps {
-        sh 'cd myProject'
-        sh 'mvn test'
+        sh 'mvn -f myProject/pom.xml test'
         junit '**/target/surefire-reports/TEST-*.xml'
       }
     }
     stage('Package') {
       steps {
-        sh 'cd myProject'
-        sh 'mvn package'
+        sh 'mvn -f myProject/pom.xml package'
       }
     }
   }
